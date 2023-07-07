@@ -35,7 +35,7 @@ You can directly call a paticular template as per the requirement. for example: 
   steps:
 
   - template: build.yml@Docker
-    parameters:
+     parameters:
         containerRegistry: '${{parameters.RegistryToken}}'
         repository: '${{parameters.imageRepository}}'
         Dockerfile: '${{parameters.dockerfile}}'
