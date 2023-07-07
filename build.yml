@@ -1,0 +1,37 @@
+parameters:
+
+- name: dockerRegistryServiceConnection
+
+  type: string
+
+
+- name: imageRepository
+  type: string
+
+
+- name: dockerfilePath
+  type: string
+
+- name: tags
+  type: string
+
+- name: buildArgs
+  type: string
+  default: ''
+
+- name: buildContext
+  type: string
+  default: "**"
+
+steps:
+
+- task: Docker@2
+  inputs:
+    containerRegistry: '${{parameters.dockerRegistryServiceConnection}}'
+    repository: '${{parameters.imageRepository}}'
+    command: 'build'
+    Dockerfile: '${{parameters.dockerfilePath}}'
+    buildContext: '${{parameters.buildContext}}'
+    tags: ${{parameters.tags}}
+    arguments: ${{parameters.buildArgs}}
+  displayName: "Docker Image Build"
