@@ -1,0 +1,33 @@
+parameters:
+
+
+
+- name: dockerRegistryServiceConnection
+  type: string
+
+
+
+- name: imageRepository
+  type: string
+
+- name: tags
+  type: string
+
+
+
+- name: pushArgs
+  type: string
+  default: ''
+
+steps:
+
+
+
+- task: Docker@2
+  inputs:
+    containerRegistry: '${{parameters.dockerRegistryServiceConnection}}'
+    repository: '${{parameters.imageRepository}}'
+    command: 'push'
+    tags: ${{parameters.tags}}
+    arguments: '${{parameters.pushArgs}}'
+  displayName: "Docker Image Push"

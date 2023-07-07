@@ -1,6 +1,6 @@
-# ADO Pipeline Template for Docker Login
+# ADO Pipeline Template for Docker Push
 
-This template contains an Azure pipeline that can be extended to build an image from a docker file under different Azure pipelines.
+This template contains an Azure pipeline that can be extended to push a docker image to acr under different Azure pipelines.
 
 ## use case
 
@@ -18,9 +18,6 @@ You can directly call a paticular template as per the requirement. for example: 
     - name: imageRepository
       type: string
 
-    - name: dockerfile
-      type: string
-
     - name: tags
       type: string
 
@@ -28,17 +25,16 @@ You can directly call a paticular template as per the requirement. for example: 
     repositories:
       - repository: Docker
         type: github
-        name: knoldus/ado.docker.login
+        name: knoldus/ado.docker.build
         ref: <respective branch name>
         endpoint: '<GitHub Service Connection>'
 
   steps:
 
-  - template: build.yml@Docker
-     parameters:
+  - template: push.yml@Docker
+    parameters:
         containerRegistry: '${{parameters.RegistryToken}}'
         repository: '${{parameters.imageRepository}}'
-        Dockerfile: '${{parameters.dockerfile}}'
         tags: ${{parameters.tags}}
   ```
 
