@@ -4,9 +4,9 @@ This template contains an Azure pipeline that can be extended to push a docker i
 
 ## use case
 
-You need to have a service connection related to github on azure devops project.
-To call this in you pipeline you can follow this example:
-You can directly call a paticular template as per the requirement. for example: to use setup and init only.
+You need to have a service connection related to GitHub on the Azure devops project.
+To call this in your pipeline you can follow this example:
+You can directly call a particular template as per the requirement. for example: to use setup and init only.
 
    ```yaml
   # azure-pipeline.yml
@@ -38,4 +38,4 @@ You can directly call a paticular template as per the requirement. for example: 
         tags: ${{parameters.tags}}
   ```
 
-You can also use Variable Group and Azure Key vault for values.
+You can also use Variable Group and Azure Key Vault for values.
